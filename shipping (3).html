@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="발주 앱">
+    <meta name="theme-color" content="#FF8C00">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="발주">
+    <link rel="manifest" href="manifest.json">
+    <title>발주</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            width: 100%;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+        }
+        
+        .login-container {
+            background: white;
+            width: 100%;
+            max-width: 500px;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .logo-section {
+            margin-bottom: 40px;
+        }
+        
+        .logo-img {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .subtitle {
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .form-label {
+            display: block;
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #FF8C00;
+            box-shadow: 0 0 5px rgba(255, 140, 0, 0.2);
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #FF8C00;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        .login-btn:hover {
+            background-color: #E67E00;
+        }
+        
+        .login-btn:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo-section">
+            <svg class="logo-img" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- 배경 -->
+                <rect width="200" height="200" fill="#FFD700" rx="40"/>
+                
+                <!-- 트럭 본체 -->
+                <rect x="40" y="80" width="100" height="50" fill="#4169E1" rx="5"/>
+                
+                <!-- 트럭 앞부분(운전석) -->
+                <rect x="130" y="70" width="35" height="40" fill="#4169E1" rx="3"/>
+                
+                <!-- 운전석 창문 -->
+                <rect x="135" y="75" width="20" height="25" fill="#87CEEB" rx="2"/>
+                
+                <!-- 앞 휠 -->
+                <circle cx="160" cy="135" r="12" fill="#333"/>
+                <circle cx="160" cy="135" r="8" fill="#555"/>
+                
+                <!-- 뒤 휠 (왼쪽) -->
+                <circle cx="70" cy="135" r="12" fill="#333"/>
+                <circle cx="70" cy="135" r="8" fill="#555"/>
+                
+                <!-- 뒤 휠 (오른쪽) -->
+                <circle cx="95" cy="135" r="12" fill="#333"/>
+                <circle cx="95" cy="135" r="8" fill="#555"/>
+                
+                <!-- 트럭 라인 -->
+                <line x1="130" y1="90" x2="130" y2="130" stroke="#2E5CB8" stroke-width="2"/>
+            </svg>
+            
+            <div class="title">또보젯지</div>
+            <div class="subtitle">발주출하 시스템</div>
+        </div>
+        
+        <form onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label class="form-label">이메일</label>
+                <input type="email" class="form-input" placeholder="이메일을 입력하세요" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">비밀번호</label>
+                <input type="password" class="form-input" placeholder="비밀번호를 입력하세요" required>
+            </div>
+            
+            <button type="submit" class="login-btn">로그인</button>
+        </form>
+    </div>
+
+    <script>
+        function handleLogin(event) {
+            event.preventDefault();
+            alert('로그인 성공!');
+        }
+        
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').catch(err => {
+                console.log('Service Worker 등록 실패:', err);
+            });
+        }
+    </script>
+</body>
+</html>
